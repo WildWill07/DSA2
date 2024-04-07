@@ -1,6 +1,6 @@
 # Doubly Linked List Implementation
 # DLL used for collision chaining in hash map
-from DS.Node import PackageNode
+from Node import PackageNode
 
 class DLL:
     def __init__(self):
@@ -21,17 +21,18 @@ class DLL:
             self.tail = NewNode
             NewNode.prev = None
 
-
-testDLL = DLL()
-myTuple = (1, "195 W Oakland Ave", "Salt Lake City", 84115, "#######", 21, "HUB")
-
-testDLL.PushFront(NewData=myTuple)
+    def Print(self):
+        currentNode = self.head
+        while currentNode != None:
+            print(currentNode.data)
+            currentNode = currentNode.next
 
 # Methods for DLL: 
 # 
-# PushFront
+# PushFront - DONE
 # PushBack
 # GetNode
+# Print - DONE
 # Delete
 # PopFront
 # PopBack
