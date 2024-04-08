@@ -41,6 +41,18 @@ class DLL:
             print(currentNode.data)
             currentNode = currentNode.next
 
+    def GetNode(self, id): # Retruns specific PackageNode by referencing PackageID
+        self.ID = id
+        currentNode = self.head
+        
+        while currentNode.PackageID != self.ID: # Exits when desired node is found or returns Null when entire DLL is traversed
+            currentNode = currentNode.next
+            if currentNode == None:
+                return None
+            
+        return currentNode.data
+
+
 testDLL = DLL()
 myTuple1 = (1, "195 W Oakland Ave", "Salt Lake City", 84115, "#######", 21, "HUB")
 myTuple2 = (2, "195 W Oakland Ave", "Salt Lake City", 84115, "#######", 21, "HUB")
@@ -49,8 +61,6 @@ myTuple3 = (3, "195 W Oakland Ave", "Salt Lake City", 84115, "#######", 21, "HUB
 testDLL.PushFront(NewData=myTuple1)
 testDLL.PushFront(NewData=myTuple2)
 testDLL.PushFront(NewData=myTuple3)
-
-testDLL.Print()
 
 # Methods for DLL: 
 # 
