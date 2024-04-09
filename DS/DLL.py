@@ -40,6 +40,8 @@ class DLL:
         while currentNode != None:
             print(currentNode.data)
             currentNode = currentNode.next
+        if self.head == None and self.tail == None:
+            print("The DLL is empty.")
 
     def GetNode(self, id): # Retruns specific PackageNode by referencing PackageID
         self.ID = id
@@ -48,6 +50,7 @@ class DLL:
         while currentNode.PackageID != self.ID: # Exits when desired node is found or returns Null when entire DLL is traversed
             currentNode = currentNode.next
             if currentNode == None:
+                DLL.ErrorMessage()
                 return None
             
         return currentNode.data
@@ -59,11 +62,48 @@ class DLL:
         while currentNode.PackageID != self.ID:
             currentNode = currentNode.next
             if currentNode == None:
+                DLL.ErrorMessage()
                 return None
             
         currentNode.next.prev = currentNode.prev
         currentNode.prev.next = currentNode.next
 
+    def PopFront(self): # Removes first Node in DLL or returns Null if DLL is empty
+        if self.head != None: # Executes if DLL is populated
+            currentNode = self.head
+            if currentNode.next == None: # Executes if the DLL has only 1 element & sets DLL to an empty List
+                currentNode.prev = None
+                self.head = None
+                self.tail = None
+                return
+
+            currentNode.next.prev = None
+            self.head = currentNode.next
+            currentNode.next = None
+
+        else: # Executes if DLL is empty
+            DLL.ErrorMessage()
+            return None
+        
+    def PopBack(self): # Removes last Node in DLL or returns Null if DLL is empty
+        if self.tail != None: # Executes if DLL is populated
+            currentNode = self.tail
+            if currentNode.prev == None: # Executes if the DLL has only 1 element & sets DLL to an empty List
+                currentNode.next = None
+                self.head = None
+                self.tail = None
+                return
+
+            currentNode.prev.next = None
+            self.tail = currentNode.prev
+            currentNode.prev = None
+
+        else: # Executs if DLL is empty
+            DLL.ErrorMessage()
+            return None
+        
+    def ErrorMessage():
+        print("Cannot perform action as the list is empty.")
 
 testDLL = DLL()
 myTuple1 = (1, "195 W Oakland Ave", "Salt Lake City", 84115, "#######", 21, "HUB")
@@ -81,8 +121,8 @@ testDLL.PushFront(NewData=myTuple3)
 # GetNode - DONE
 # Print - DONE
 # Delete - DONE
-# PopFront
-# PopBack
+# PopFront - DONE
+# PopBack - DONE
 # InsertBefore
 # InsertAfter
 
