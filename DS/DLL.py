@@ -52,6 +52,18 @@ class DLL:
             
         return currentNode.data
 
+    def DeleteNode(self, id): # Removes a specific node by referencing PackageID
+        self.ID = id
+        currentNode = self.head
+
+        while currentNode.PackageID != self.ID:
+            currentNode = currentNode.next
+            if currentNode == None:
+                return None
+            
+        currentNode.next.prev = currentNode.prev
+        currentNode.prev.next = currentNode.next
+
 
 testDLL = DLL()
 myTuple1 = (1, "195 W Oakland Ave", "Salt Lake City", 84115, "#######", 21, "HUB")
@@ -66,10 +78,14 @@ testDLL.PushFront(NewData=myTuple3)
 # 
 # PushFront - DONE
 # PushBack - DONE
-# GetNode
+# GetNode - DONE
 # Print - DONE
-# Delete
+# Delete - DONE
 # PopFront
 # PopBack
 # InsertBefore
 # InsertAfter
+
+# ToDo
+#
+# Look into adding currentNode class variable to reduce method private current node declarations
