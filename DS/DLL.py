@@ -89,6 +89,20 @@ class DLL:
             
         return currentNode.data
     
+    def PeekFront(self):
+        if self.head == None:
+            DLL.ErrorMessage()
+            return
+        else:
+            return self.head.data
+
+    def PeekBack(self):
+        if self.tail == None:
+            DLL.ErrorMessage()
+            return
+        else:
+            return self.tail.data
+    
     def GetNodeObject(self, id): # Retruns specific PackageNode by referencing PackageID
         self.ID = id
         currentNode = self.head
@@ -172,8 +186,8 @@ testDLL.Print()
 # PopBack - DONE
 # InsertBefore - DONE
 # InsertAfter - DONE
-# PeekFront
-# PeekBack
+# PeekFront - DONE
+# PeekBack - DONE
 
 # ToDo
 #
