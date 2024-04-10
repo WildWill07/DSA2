@@ -167,31 +167,3 @@ class DLL:
 
     def ErrorMessage_NullNode():
         print("ERROR: The targeted node does not exist.")
-
-testDLL = DLL()
-myTuple1 = (1, "195 W Oakland Ave", "Salt Lake City", 84115, "#######", 21, "HUB")
-myTuple2 = (2, "195 W Oakland Ave", "Salt Lake City", 84115, "#######", 21, "HUB")
-myTuple3 = (3, "195 W Oakland Ave", "Salt Lake City", 84115, "#######", 21, "HUB")
-
-testDLL.PushFront(NewData=myTuple1)
-testDLL.PushFront(NewData=myTuple2)
-testDLL.InsertBefore(ID=1,NewData=myTuple3)
-testDLL.Print()
-
-# Methods for DLL: 
-# 
-# PushFront - DONE
-# PushBack - DONE
-# GetNode - DONE
-# Print - DONE
-# Delete - DONE
-# PopFront - DONE
-# PopBack - DONE
-# InsertBefore - DONE
-# InsertAfter - DONE
-# PeekFront - DONE
-# PeekBack - DONE
-
-# ToDo
-#
-# Look into adding currentNode class variable to reduce method private current node declarations
