@@ -35,6 +35,40 @@ class DLL:
             NewNode.next = None
             self.tail = NewNode # Sets new Node as last element in DLL
 
+    def InsertBefore(self, ID, NewData):
+        currentNode = DLL.GetNodeObject(self, id=ID)
+
+        if currentNode == None:
+            print("ERROR: Targeted node could not be found. Please provide a valid node ID.")
+            return
+        else:
+            if currentNode.prev == None: # Executes if the insert before Node is the head Node
+                DLL.PushFront(NewData)
+            else:
+                NewNode = PackageNode(NewData)
+                NewNode.prev = currentNode.prev # Points NewNode prev to the prev node of the insert before node
+                NewNode.next = currentNode # Points NewNode next to the insert before node
+                currentNode.prev = NewNode
+                NewNode.prev.next = NewNode
+
+
+    def InsertAfter(self, ID, NewData):
+        currentNode = DLL.GetNodeObject(self, id=ID)
+        
+        if currentNode == None:
+            print("ERROR: Targeted node could not be found. Please provide a valid node ID.")
+            return
+        else:
+            if currentNode.next == None: # Executes if the insert after node is the tail node
+                DLL.PushBack(NewData)
+            else:
+                NewNode = PackageNode(NewData)
+                NewNode.next = currentNode.next # Points NewNode next to the insert after nodes next node pointer
+                NewNode.prev = currentNode # Points NewNode prev pointer to the insert after node object
+                currentNode.next = NewNode # Points insert after node next pointer to the NewNode object
+                NewNode.next.prev = NewNode # Points the NewNode next node's prev node pointer to the NewNode object
+
+
     def Print(self):
         currentNode = self.head
         while currentNode != None:
@@ -43,7 +77,7 @@ class DLL:
         if self.head == None and self.tail == None:
             print("The DLL is empty.")
 
-    def GetNode(self, id): # Retruns specific PackageNode by referencing PackageID
+    def GetNodeData(self, id): # Retruns specific PackageNode by referencing PackageID
         self.ID = id
         currentNode = self.head
         
@@ -54,6 +88,18 @@ class DLL:
                 return None
             
         return currentNode.data
+    
+    def GetNodeObject(self, id): # Retruns specific PackageNode by referencing PackageID
+        self.ID = id
+        currentNode = self.head
+        
+        while currentNode.PackageID != self.ID: # Exits when desired node is found or returns Null when entire DLL is traversed
+            currentNode = currentNode.next
+            if currentNode == None:
+                DLL.ErrorMessage()
+                return None
+            
+        return currentNode
 
     def DeleteNode(self, id): # Removes a specific node by referencing PackageID
         self.ID = id
@@ -112,7 +158,8 @@ myTuple3 = (3, "195 W Oakland Ave", "Salt Lake City", 84115, "#######", 21, "HUB
 
 testDLL.PushFront(NewData=myTuple1)
 testDLL.PushFront(NewData=myTuple2)
-testDLL.PushFront(NewData=myTuple3)
+testDLL.InsertBefore(ID=1,NewData=myTuple3)
+testDLL.Print()
 
 # Methods for DLL: 
 # 
@@ -123,8 +170,10 @@ testDLL.PushFront(NewData=myTuple3)
 # Delete - DONE
 # PopFront - DONE
 # PopBack - DONE
-# InsertBefore
-# InsertAfter
+# InsertBefore - DONE
+# InsertAfter - DONE
+# PeekFront
+# PeekBack
 
 # ToDo
 #
