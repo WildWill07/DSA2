@@ -89,14 +89,14 @@ class DLL:
             
         return currentNode.data
     
-    def PeekFront(self):
+    def PeekFront(self): # Returns data tuple of head node object
         if self.head == None:
             DLL.ErrorMessage_EmptyList()
             return
         else:
             return self.head.data
 
-    def PeekBack(self):
+    def PeekBack(self): # Returns data tuple of tail node object
         if self.tail == None:
             DLL.ErrorMessage_EmptyList()
             return
