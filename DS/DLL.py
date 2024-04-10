@@ -39,7 +39,7 @@ class DLL:
         currentNode = DLL.GetNodeObject(self, id=ID)
 
         if currentNode == None:
-            print("ERROR: Targeted node could not be found. Please provide a valid node ID.")
+            DLL.ErrorMessage_NullNode()
             return
         else:
             if currentNode.prev == None: # Executes if the insert before Node is the head Node
@@ -56,7 +56,7 @@ class DLL:
         currentNode = DLL.GetNodeObject(self, id=ID)
         
         if currentNode == None:
-            print("ERROR: Targeted node could not be found. Please provide a valid node ID.")
+            DLL.ErrorMessage_NullNode()
             return
         else:
             if currentNode.next == None: # Executes if the insert after node is the tail node
@@ -84,21 +84,21 @@ class DLL:
         while currentNode.PackageID != self.ID: # Exits when desired node is found or returns Null when entire DLL is traversed
             currentNode = currentNode.next
             if currentNode == None:
-                DLL.ErrorMessage()
+                DLL.ErrorMessage_NullNode()
                 return None
             
         return currentNode.data
     
     def PeekFront(self):
         if self.head == None:
-            DLL.ErrorMessage()
+            DLL.ErrorMessage_EmptyList()
             return
         else:
             return self.head.data
 
     def PeekBack(self):
         if self.tail == None:
-            DLL.ErrorMessage()
+            DLL.ErrorMessage_EmptyList()
             return
         else:
             return self.tail.data
@@ -110,7 +110,7 @@ class DLL:
         while currentNode.PackageID != self.ID: # Exits when desired node is found or returns Null when entire DLL is traversed
             currentNode = currentNode.next
             if currentNode == None:
-                DLL.ErrorMessage()
+                DLL.ErrorMessage_NullNode()
                 return None
             
         return currentNode
@@ -122,7 +122,7 @@ class DLL:
         while currentNode.PackageID != self.ID:
             currentNode = currentNode.next
             if currentNode == None:
-                DLL.ErrorMessage()
+                DLL.ErrorMessage_NullNode()
                 return None
             
         currentNode.next.prev = currentNode.prev
@@ -142,7 +142,7 @@ class DLL:
             currentNode.next = None
 
         else: # Executes if DLL is empty
-            DLL.ErrorMessage()
+            DLL.ErrorMessage_EmptyList()
             return None
         
     def PopBack(self): # Removes last Node in DLL or returns Null if DLL is empty
@@ -159,11 +159,14 @@ class DLL:
             currentNode.prev = None
 
         else: # Executs if DLL is empty
-            DLL.ErrorMessage()
+            DLL.ErrorMessage_EmptyList()
             return None
         
-    def ErrorMessage():
-        print("Cannot perform action as the list is empty.")
+    def ErrorMessage_EmptyList():
+        print("ERROR: Cannot perform action as the list is empty.")
+
+    def ErrorMessage_NullNode():
+        print("ERROR: The targeted node does not exist.")
 
 testDLL = DLL()
 myTuple1 = (1, "195 W Oakland Ave", "Salt Lake City", 84115, "#######", 21, "HUB")
