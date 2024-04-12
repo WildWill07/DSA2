@@ -125,18 +125,9 @@ class DLL:
                 return None
         
         if self.head == currentNode: # Executes if targeted node is head node
-            if currentNode.next is None: # Executes if targeted Node is the only node in DLL
-                currentNode.prev = None
-                self.head = None
-                self.tail = None
-            else:
-                self.head = currentNode.next
-                currentNode.next.prev = None
-                currentNode.next = None
+            self.PopFront()
         elif self.tail == currentNode: # Executes if targeted is the tail node
-            self.tail == currentNode.prev
-            currentNode.prev.next = None
-            currentNode.prev = None
+            self.PopBack()
         else: # Executes if targeted Node is neither the head or tail node
             currentNode.next.prev = currentNode.prev
             currentNode.prev.next = currentNode.next
