@@ -21,8 +21,15 @@ class HashMap:
             entry = self.map[hashIndex] # Retrieves DLL obj stored at Hash Map index
             entry.PushFront(data) # Adds new entry to DLL obj stored at Hash Map index
 
+    # Retrieves Data stored in DLL by referencing PackageID variable (key)
     def get (self, key):
-        pass
+        hashIndex = self.getHash(key)
+
+        if self.map[hashIndex] is None:
+            return self.map[hashIndex]
+        else:
+            entry = self.map[hashIndex]
+            return entry.GetNodeData(key) # "key" is the PackageID
 
     def delete(self, key):
         pass
@@ -39,9 +46,9 @@ class HashMap:
 
 myMap = HashMap()
 var1 = (1, "195 W Oakland Ave", "Salt Lake City", 84115, "#######", 21, "HUB")
-var2 = (1, "2530 S 500 E", "Salt Lake City", 84106, "EOD", 44, "TRANSIT")
+var2 = (17, "2530 S 500 E", "Salt Lake City", 84106, "EOD", 44, "TRANSIT")
 
 myMap.add(key=var1[0], data=var1)
 myMap.add(key=var2[0], data=var2)
 
-myMap.print()
+print(myMap.get(1))
