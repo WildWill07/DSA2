@@ -1,14 +1,14 @@
 # Hash Map Implementation
 from DLL import DLL
-from Node import PackageNode
 
 class HashMap:
     def __init__(self):
         self.size = 16 # Sets size of the hash map
         self.map = [None] * self.size # Initializes an empty array of null objects
 
+    # Generates hash index based on PackageID
     def getHash(self, key):
-        hash = key % self.size # Takes the mod (size of the hash map) from the package ID and returns value as hash index
+        hash = key % self.size
         return hash
 
     def add(self, key, data):
@@ -32,7 +32,15 @@ class HashMap:
             return entry.GetNodeData(key) # "key" is the PackageID
 
     def delete(self, key):
-        pass
+        hashIndex = self.getHash(key)
+
+        if self.map[hashIndex] is None:
+            print("ERROR: Targeted hash map index is empty OR Package ID does not exist.")
+            return
+        else:
+            entry = self.map[hashIndex]
+            entry.DeleteNode(key)
+            print("SUCCESS: Targted node was deleted.")
 
     # Prints Entire hash map
     def print(self):
@@ -47,8 +55,10 @@ class HashMap:
 myMap = HashMap()
 var1 = (1, "195 W Oakland Ave", "Salt Lake City", 84115, "#######", 21, "HUB")
 var2 = (17, "2530 S 500 E", "Salt Lake City", 84106, "EOD", 44, "TRANSIT")
+var3 = (3, "233 Canyon Rd", "Salt Lake City", 84103, "EOD", 2, "DELIVERED")
 
 myMap.add(key=var1[0], data=var1)
 myMap.add(key=var2[0], data=var2)
+myMap.add(key=var3[0], data=var3)
 
-print(myMap.get(1))
+myMap.delete(1)
