@@ -1,8 +1,10 @@
 # Hash Map Implementation
+from DLL import DLL
 
 class HashMap:
     def __init__(self):
-        pass
+        self.size = 16 # Sets size of the hash map
+        self.map = [None] * self.size # Initializes an empty array of null objects
 
     def getHash(self, key):
         pass
