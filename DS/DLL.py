@@ -115,18 +115,33 @@ class DLL:
             
         return currentNode
 
-    def DeleteNode(self, id): # Removes a specific node by referencing PackageID
-        self.ID = id
+    def DeleteNode(self, ID): # Removes a specific node by referencing PackageID
         currentNode = self.head
 
-        while currentNode.PackageID != self.ID:
+        while currentNode.PackageID != ID: # Traverse DLL until desired node is reached
             currentNode = currentNode.next
             if currentNode == None:
                 DLL.ErrorMessage_NullNode()
                 return None
-            
-        currentNode.next.prev = currentNode.prev
-        currentNode.prev.next = currentNode.next
+        
+        if self.head == currentNode: # Executes if targeted node is head node
+            if currentNode.next is None: # Executes if targeted Node is the only node in DLL
+                currentNode.prev = None
+                self.head = None
+                self.tail = None
+            else:
+                self.head = currentNode.next
+                currentNode.next.prev = None
+                currentNode.next = None
+        elif self.tail == currentNode: # Executes if targeted is the tail node
+            self.tail == currentNode.prev
+            currentNode.prev.next = None
+            currentNode.prev = None
+        else: # Executes if targeted Node is neither the head or tail node
+            currentNode.next.prev = currentNode.prev
+            currentNode.prev.next = currentNode.next
+            currentNode.prev = None
+            currentNode.next = None
 
     def PopFront(self): # Removes first Node in DLL or returns Null if DLL is empty
         if self.head != None: # Executes if DLL is populated
