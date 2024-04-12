@@ -15,10 +15,11 @@ class HashMap:
         hashIndex = self.getHash(key)
 
         if self.map[hashIndex] == None: # Executes if hash map index is empty
-            self.map[hashIndex] = DLL()
-            DLL.PushFront(data)
+            self.map[hashIndex] = DLL() # Creates a new DLL obj and stores it in Hash Map index
+            DLL.PushFront(self=self.map[hashIndex], NewData=data)
         else:
-            DLL.PushFront(data)
+            entry = self.map[hashIndex] # Retrieves DLL obj stored at Hash Map index
+            entry.PushFront(data) # Adds new entry to DLL obj stored at Hash Map index
 
     def get (self, key):
         pass
@@ -26,8 +27,21 @@ class HashMap:
     def delete(self, key):
         pass
 
+    # Prints Entire hash map
     def print(self):
-        for item in self.map:
-            if item is not None:
-                pass
-            # Rewrite this method possibly use in range for loop
+        for item in range(self.size):
+            if self.map[item] is not None:
+                entry = self.map[item]
+                entry.Print()
+            else:
+                print(self.map[item])
+
+
+myMap = HashMap()
+var1 = (1, "195 W Oakland Ave", "Salt Lake City", 84115, "#######", 21, "HUB")
+var2 = (1, "2530 S 500 E", "Salt Lake City", 84106, "EOD", 44, "TRANSIT")
+
+myMap.add(key=var1[0], data=var1)
+myMap.add(key=var2[0], data=var2)
+
+myMap.print()
