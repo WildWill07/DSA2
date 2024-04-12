@@ -1,5 +1,6 @@
 # Hash Map Implementation
 from DLL import DLL
+from Node import PackageNode
 
 class HashMap:
     def __init__(self):
@@ -10,8 +11,14 @@ class HashMap:
         hash = key % self.size # Takes the mod (size of the hash map) from the package ID and returns value as hash index
         return hash
 
-    def add(self, key, value):
-        pass
+    def add(self, key, data):
+        hashIndex = self.getHash(key)
+
+        if self.map[hashIndex] == None: # Executes if hash map index is empty
+            self.map[hashIndex] = DLL()
+            DLL.PushFront(data)
+        else:
+            DLL.PushFront(data)
 
     def get (self, key):
         pass
@@ -20,4 +27,7 @@ class HashMap:
         pass
 
     def print(self):
-        pass
+        for item in self.map:
+            if item is not None:
+                pass
+            # Rewrite this method possibly use in range for loop
