@@ -7,7 +7,8 @@ class HashMap:
         self.map = [None] * self.size # Initializes an empty array of null objects
 
     def getHash(self, key):
-        pass
+        hash = key % self.size # Takes the mod (size of the hash map) from the package ID and returns value as hash index
+        return hash
 
     def add(self, key, value):
         pass
