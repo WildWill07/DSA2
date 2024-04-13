@@ -51,6 +51,17 @@ class HashMap:
             else:
                 print(self.map[item])
 
+    # Verified the existence of a targeted Node
+    def verifyNode(self, key):
+        hashIndex = self.getHash(key)
+
+        if self.map[hashIndex] is None:
+            print("ERROR: Targeted Node does not exist")
+        else:
+            entry = self.map[hashIndex]
+            if entry.GetNodeObject(key) is not None:
+                print("SUCCESS: Targeted Node does exist")
+
 
 myMap = HashMap()
 var1 = (1, "195 W Oakland Ave", "Salt Lake City", 84115, "#######", 21, "HUB")
@@ -61,4 +72,6 @@ myMap.add(key=var1[0], data=var1)
 myMap.add(key=var2[0], data=var2)
 myMap.add(key=var3[0], data=var3)
 
+myMap.verifyNode(1)
 myMap.delete(1)
+myMap.verifyNode(1)
