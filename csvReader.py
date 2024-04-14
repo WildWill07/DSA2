@@ -18,11 +18,3 @@ class PackageDataReader:
 
     def close(self):
         self.csvFile.close() # Closes reader object after data has been loaded into the Hash Map
-
-# Remove the below Code once main driver file is implemented
-#test = PackageDataReader()
-#testMap = HashMap()
-
-#test.loadHashMap()
-#test.close()
-#testMap.print()
