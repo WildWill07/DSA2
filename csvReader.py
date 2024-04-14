@@ -1,4 +1,5 @@
 import csv
+from DS.HashMap import HashMap
 
 class PackageDataReader:
     def __init__(self):
@@ -14,5 +15,8 @@ class PackageDataReader:
 
 
 test = PackageDataReader()
-test.print()
-test.close()
+#test.print()
+#test.close()
+
+testMap = HashMap()
+testMap.print()

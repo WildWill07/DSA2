@@ -1,6 +1,6 @@
 # Doubly Linked List Implementation
 # DLL used for collision chaining in hash map
-from Node import PackageNode
+from DS.Node import PackageNode
 
 class DLL:
     def __init__(self):

@@ -1,5 +1,5 @@
 # Hash Map Implementation
-from DLL import DLL
+from DS.DLL import DLL
 
 class HashMap:
     def __init__(self):
@@ -61,17 +61,3 @@ class HashMap:
             entry = self.map[hashIndex]
             if entry.GetNodeObject(key) is not None:
                 print("SUCCESS: Targeted Node does exist")
-
-
-myMap = HashMap()
-var1 = (1, "195 W Oakland Ave", "Salt Lake City", 84115, "#######", 21, "HUB")
-var2 = (17, "2530 S 500 E", "Salt Lake City", 84106, "EOD", 44, "TRANSIT")
-var3 = (3, "233 Canyon Rd", "Salt Lake City", 84103, "EOD", 2, "DELIVERED")
-
-myMap.add(key=var1[0], data=var1)
-myMap.add(key=var2[0], data=var2)
-myMap.add(key=var3[0], data=var3)
-
-myMap.verifyNode(1)
-myMap.delete(1)
-myMap.verifyNode(1)
