@@ -12,7 +12,13 @@ class HashMap:
         return hash
 
     def add(self, key, data):
-        hashIndex = self.getHash(key)
+        # Type Conversions from str to int
+        intKey = int(key) # PackageID used for Key Value
+        data[0] = int(data[0]) # PackageID
+        data[3] = int(data[3]) # D_ZipCode
+        data[5] = int(data[5]) # Weight
+
+        hashIndex = self.getHash(intKey)
 
         if self.map[hashIndex] == None: # Executes if hash map index is empty
             self.map[hashIndex] = DLL() # Creates a new DLL obj and stores it in Hash Map index
