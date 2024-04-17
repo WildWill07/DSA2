@@ -18,3 +18,7 @@ class PackageDataReader:
 
     def close(self):
         self.csvFile.close() # Closes reader object after data has been loaded into the Hash Map
+
+class DistanceDataReader:
+    def __init__(self):
+        pass
