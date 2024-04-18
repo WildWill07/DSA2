@@ -22,11 +22,24 @@ class PackageDataReader:
 class DistanceDataReader:
     def __init__(self):
         self.csvFile = open('DistanceTable.csv')
-        self.csvReader = csv.reader(self.csvFile)
+        self.csvDistance = list(csv.reader(self.csvFile)) # Converts input into a list/arr obj
 
     def close(self):
         self.csvFile.close()
 
     def print(self):
-        for lines in self.csvReader:
-            print(lines)
+        print(type(self.csvDistance[0][0]))
+
+    def typeConversion(self):
+        temp = []
+        for row in self.csvDistance:
+            test = []
+            for item in row:
+                test.append(float(item))
+            temp.append(test)
+        self.csvDistance = temp
+            
+
+test = DistanceDataReader()
+test.typeConversion()
+test.print()
