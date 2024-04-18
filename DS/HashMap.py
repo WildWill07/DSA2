@@ -10,6 +10,11 @@ class HashMap:
     def getHash(self, key):
         hash = key % self.size
         return hash
+    
+    def loadHashMap(self, data):
+        #next(data, None)
+        for x in range(len(data)):
+            self.add(key=data[x][0], data = data[x])
 
     def add(self, key, data):
         # Type Conversions from str to int
