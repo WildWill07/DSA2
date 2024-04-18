@@ -21,4 +21,12 @@ class PackageDataReader:
 
 class DistanceDataReader:
     def __init__(self):
-        pass
+        self.csvFile = open('DistanceTable.csv')
+        self.csvReader = csv.reader(self.csvFile)
+
+    def close(self):
+        self.csvFile.close()
+
+    def print(self):
+        for lines in self.csvReader:
+            print(lines)
