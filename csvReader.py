@@ -1,6 +1,7 @@
 import csv
 from DS.HashMap import HashMap
 
+# Reads data from Package PackageData.csv
 class PackageDataReader:
     def __init__(self):
         self.csvFile = open('CSV\PackageData.csv') # For future generalization pass a variable to open method instead of an absolute definition
@@ -19,6 +20,7 @@ class PackageDataReader:
     def close(self):
         self.csvFile.close() # Closes reader object after data has been loaded into the Hash Map
 
+# Reads data from DistanceTable.csv
 class DistanceDataReader:
     def __init__(self):
         self.csvFile = open('CSV\DistanceTable.csv')
@@ -27,8 +29,10 @@ class DistanceDataReader:
     def close(self):
         self.csvFile.close()
 
+    # Prints data stored in csvDistance by row
     def print(self):
-        print(type(self.csvDistance[0][0]))
+        for x in range(len(self.csvDistance)):
+            print(self.csvDistance[x])
 
     # Converts csvDistance data entries to float type
     def typeConversion(self):
@@ -39,7 +43,3 @@ class DistanceDataReader:
                 test.append(float(item))
             temp.append(test)
         self.csvDistance = temp
-            
-
-test = DistanceDataReader()
-test.print()
