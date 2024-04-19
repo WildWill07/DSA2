@@ -59,6 +59,7 @@ truck1 = Truck(16, 18, [1, 2, 4, 5, 7, 8, 10, 13, 14, 15, 16, 19], 0.0, "4001 So
 truck2 = Truck(16, 18, [31, 33, 34, 35, 37, 39, 40, 3, 9, 18, 36, 38], 0.0, "4001 South 700 East", datetime.timedelta(hours=10, minutes=20))
 truck3 = Truck(16, 18, [11, 12, 17, 20, 21, 22, 23, 24, 26, 27, 29, 30, 6, 25, 28, 32], 0.0, "4001 South 700 East", datetime.timedelta(hours=9, minutes=5))
 
+# Initialize and load Hash Map
 packageHashMap = HashMap()
 packageHashMap.loadHashMap(csvPackage)
 
@@ -68,7 +69,24 @@ def main():
     deliver(truck2)
     deliver(truck3)
 
-    print(packageHashMap.getNodeObject(25))
+    x = 1
+    print("========================================================================================================\n")
+    while x==1:
+        print("Welcome to Package Router.")
+        print("This program was written and developed by William Neyland\n")
+        print("To check the status of a package please enter the valid corresponding Package ID (example '1' or '25').")
+        print("If you wish to exit the application please type in 'exit'.")
+        searchPackage = input()
+        if searchPackage == "exit":
+            print("Exiting the application now")
+            x +=1
+        elif packageHashMap.verifyNode(int(searchPackage)):
+            print("The Package does exist.")
+        elif packageHashMap.verifyNode(int(searchPackage)) == False:
+            print("The Package does not exist.") 
+        else:
+            print("Invalid input please try again.")
+        print("========================================================================================================\n")
 
 if __name__ == "__main__":
     main()

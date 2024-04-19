@@ -32,16 +32,7 @@ class HashMap:
             entry = self.map[hashIndex] # Retrieves DLL obj stored at Hash Map index
             entry.PushFront(data) # Adds new entry to DLL obj stored at Hash Map index
 
-    # Retrieves Data stored in DLL by referencing PackageID variable (key)
-    def getNodeData (self, key):
-        hashIndex = self.getHash(key)
-
-        if self.map[hashIndex] is None:
-            return self.map[hashIndex]
-        else:
-            entry = self.map[hashIndex]
-            return entry.GetNodeData(key) # "key" is the PackageID
-        
+    # Returns reference to Node Object by referencing PackageID variable (key)     
     def getNodeObject(self, key):
         hashIndex = self.getHash(key)
 
@@ -76,8 +67,8 @@ class HashMap:
         hashIndex = self.getHash(key)
 
         if self.map[hashIndex] is None:
-            print("ERROR: Targeted Node does not exist")
+            return False
         else:
             entry = self.map[hashIndex]
-            if entry.GetNodeObject(key) is not None:
-                print("SUCCESS: Targeted Node does exist")
+            if entry.getNodeObject(key) is not None:
+                return True

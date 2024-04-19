@@ -36,7 +36,7 @@ class DLL:
             self.tail = NewNode # Sets new Node as last element in DLL
 
     def InsertBefore(self, ID, NewData):
-        currentNode = DLL.GetNodeObject(self, id=ID)
+        currentNode = DLL.getNodeObject(self, id=ID)
 
         if currentNode == None:
             DLL.ErrorMessage_NullNode()
@@ -53,7 +53,7 @@ class DLL:
 
 
     def InsertAfter(self, ID, NewData):
-        currentNode = DLL.GetNodeObject(self, id=ID)
+        currentNode = DLL.getNodeObject(self, id=ID)
         
         if currentNode == None:
             DLL.ErrorMessage_NullNode()
