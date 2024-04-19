@@ -30,22 +30,45 @@ def getDistance(add1, add2):
         distance = csvDistance[add2][add1]
     return float(distance)
 
-def getMinDistance():
-    return
+# Implements Dijkstra's algorithm to determine MST of Nodes used to plan optimal package delivery route
+# Takes in a truck object as the parameter
+def deliver(truckX):
+    temp = truckX.packageLoad.copy()
+    for id in truckX.packageLoad:
+        (packageHashMap.getNodeObject(id)).D_Status = "EN-ROUTE" # Change status variable of packages loaded on the truck
+    truckX.packageLoad.clear()
+
+    while(len(temp) > 0):
+        minDistance = 10e8
+        for id in temp:
+            node = packageHashMap.getNodeObject(id)
+            if (getDistance(getAddressIndex(truckX.address), getAddressIndex(node.D_Address)) < minDistance):
+                minDistance = getDistance(getAddressIndex(truckX.address), getAddressIndex(node.D_Address))
+                selectedNode = node # stores node obj mem addr of shortest distance node
+        truckX.packageLoad.append(selectedNode.PackageID)
+        temp.remove(selectedNode.PackageID)
+        truckX.address = selectedNode.D_Address
+        truckX.mileage += minDistance
+        truckX.time += datetime.timedelta(hours=minDistance/18)
+        selectedNode.deliveryTime = truckX.time
+        selectedNode.D_Status = "DELIVERED" # Update status of package once delivered
+    
 
 # Initialize Truck Objects for delivery
 truck1 = Truck(16, 18, [1, 2, 4, 5, 7, 8, 10, 13, 14, 15, 16, 19], 0.0, "4001 South 700 East", datetime.timedelta(hours=8))
 truck2 = Truck(16, 18, [31, 33, 34, 35, 37, 39, 40, 3, 9, 18, 36, 38], 0.0, "4001 South 700 East", datetime.timedelta(hours=10, minutes=20))
 truck3 = Truck(16, 18, [11, 12, 17, 20, 21, 22, 23, 24, 26, 27, 29, 30, 6, 25, 28, 32], 0.0, "4001 South 700 East", datetime.timedelta(hours=9, minutes=5))
 
+packageHashMap = HashMap()
+packageHashMap.loadHashMap(csvPackage)
+
 # Driver Code
 def main():
-    packageHashMap = HashMap()
+    deliver(truck1)
+    deliver(truck2)
+    deliver(truck3)
 
-    packageHashMap.loadHashMap(csvPackage)
-    alteredNode = packageHashMap.getNodeObject(1)
-    alteredNode.time = "TEST"
-    print(alteredNode)
+    print(packageHashMap.getNodeObject(25))
 
 if __name__ == "__main__":
     main()
