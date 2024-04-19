@@ -11,6 +11,10 @@ class PackageNode:
         self.D_Deadline = data[4]
         self.Weight = data[5]
         self.D_Status = data[6]
+        self.time = None
+
+    def __str__(self):
+        return "Package ID: %s | Package Address: %s, %s, UT, %s | Package Weight: %s | Package Status: %s | Time of Delivery: %s" % (self.PackageID, self.D_Address, self.D_City, self.D_ZipCode, self.Weight, self.D_Status, self.time)
 
 # data parameter is a tuple containing the following:
 # PackageID - int

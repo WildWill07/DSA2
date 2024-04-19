@@ -33,7 +33,7 @@ class HashMap:
             entry.PushFront(data) # Adds new entry to DLL obj stored at Hash Map index
 
     # Retrieves Data stored in DLL by referencing PackageID variable (key)
-    def get (self, key):
+    def getNodeData (self, key):
         hashIndex = self.getHash(key)
 
         if self.map[hashIndex] is None:
@@ -41,6 +41,15 @@ class HashMap:
         else:
             entry = self.map[hashIndex]
             return entry.GetNodeData(key) # "key" is the PackageID
+        
+    def getNodeObject(self, key):
+        hashIndex = self.getHash(key)
+
+        if self.map[hashIndex] is None:
+            return self.map[hashIndex]
+        else:
+            targetNode = self.map[hashIndex]
+            return targetNode.getNodeObject(key)
 
     def delete(self, key):
         hashIndex = self.getHash(key)

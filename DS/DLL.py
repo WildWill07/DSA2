@@ -103,7 +103,7 @@ class DLL:
         else:
             return self.tail.data
     
-    def GetNodeObject(self, id): # Retruns specific PackageNode by referencing PackageID
+    def getNodeObject(self, id): # Retruns specific PackageNode by referencing PackageID
         self.ID = id
         currentNode = self.head
         
