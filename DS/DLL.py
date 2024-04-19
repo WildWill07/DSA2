@@ -68,6 +68,13 @@ class DLL:
                 currentNode.next = NewNode # Points insert after node next pointer to the NewNode object
                 NewNode.next.prev = NewNode # Points the NewNode next node's prev node pointer to the NewNode object
 
+    def count(self):
+        size = 0
+        currentNode = self.head
+        while currentNode != None:
+            size +=1
+            currentNode = currentNode.next
+        return size
 
     def Print(self):
         currentNode = self.head

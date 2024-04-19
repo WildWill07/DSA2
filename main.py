@@ -46,7 +46,7 @@ def getDistance(add1, add2):
 def deliver(truckX):
     temp = truckX.packageLoad.copy()
     for id in truckX.packageLoad:
-        (packageHashMap.getNodeObject(id)).D_Status = "EN-ROUTE" # Change status variable of packages loaded on the truck
+        (packageHashMap.getNodeObject(id)).departTime = truckX.time
     truckX.packageLoad.clear()
 
     while(len(temp) > 0):
@@ -99,9 +99,13 @@ def main():
             if userInput == 'time':
                 time = timeConversion()
                 if packageMode == 'sp':
-                    pass
+                    package.verifyStatus(time)
+                    print(package)
                 if packageMode == 'all':
-                    pass
+                    for x in range(1, packageHashMap.getTotalNodeCount()+1): # adds 1 so loop will start at packageID 1 and continue to max packageID
+                        selectedNode = packageHashMap.getNodeObject(x) # Takes advantage of the fact that PackageID's are contiguous and sequentially ordered
+                        selectedNode.verifyStatus(time)
+                        print(selectedNode)
             elif userInput == 'cs' and packageMode == 'sp':
                 print(package)
             elif userInput == 'cs' and packageMode == 'all':

@@ -9,10 +9,3 @@ class Truck:
 
     def __str__(self):
         return "Truck Capacity: %s | Average Truck Speed: %smph | Packages on Truck: %s | Mileage: %s | Address: %s | Delivery Completed at: %s" % (self.capacity, self.speed, self.packageLoad, self.mileage, self.address, self.time)
-
-    # Speed - 18 mph
-    # capacity - 16
-    # packageLoad
-    # mileage
-    # address
-    # departTime - 8am earliest

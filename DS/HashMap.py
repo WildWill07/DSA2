@@ -42,6 +42,14 @@ class HashMap:
             targetNode = self.map[hashIndex]
             return targetNode.getNodeObject(key)
 
+    def getTotalNodeCount(self):
+        count = 0
+        for item in range(self.size):
+            if self.map[item] is not None:
+                entry = self.map[item]
+                count += entry.count()
+        return count
+
     def delete(self, key):
         hashIndex = self.getHash(key)
 
