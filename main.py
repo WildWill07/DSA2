@@ -16,6 +16,17 @@ with open("CSV/AddressTable.csv") as file:
     csvAddress = csv.reader(file)
     csvAddress = list(csvAddress)
 
+# Gets user input and converts it to a valid time
+def timeConversion():
+    inputTime = input("Please enter a valid time in the following format, HH:MM:SS (exemple '10:30:00'): ")
+    try:
+        (h, m, s) = inputTime.split(":")
+        convertedTime = datetime.timedelta(hours=int(h), minutes=int(m), seconds=int(s))
+        return convertedTime
+    except ValueError:
+        print("ERROR: Provided invalid input exiting the application now")
+        exit()
+
 # Searches csvAddress data for a matching address and then returns corresponding address index
 def getAddressIndex(address):
     for x in range(len(csvAddress)):
@@ -53,7 +64,6 @@ def deliver(truckX):
         selectedNode.deliveryTime = truckX.time
         selectedNode.D_Status = "DELIVERED" # Update status of package once delivered
     
-
 # Initialize Truck Objects for delivery
 truck1 = Truck(16, 18, [1, 2, 4, 5, 7, 8, 10, 13, 14, 15, 16, 19], 0.0, "4001 South 700 East", datetime.timedelta(hours=8))
 truck2 = Truck(16, 18, [31, 33, 34, 35, 37, 39, 40, 3, 9, 18, 36, 38], 0.0, "4001 South 700 East", datetime.timedelta(hours=10, minutes=20))
@@ -69,24 +79,46 @@ def main():
     deliver(truck2)
     deliver(truck3)
 
-    x = 1
     print("========================================================================================================\n")
-    while x==1:
-        print("Welcome to Package Router.")
-        print("This program was written and developed by William Neyland\n")
-        print("To check the status of a package please enter the valid corresponding Package ID (example '1' or '25').")
-        print("If you wish to exit the application please type in 'exit'.")
-        searchPackage = input()
-        if searchPackage == "exit":
+    print("Welcome to Package Router.")
+    print("This program was written and developed by William Neyland\n")
+    print("To check the status of specific package please enter 'sp' or to check the status of all packages enter 'all'.")
+    print("If you wish to exit the application please type in 'exit'.")
+    try:
+        userInput = input()
+        if userInput == 'sp' or 'all':
+            packageMode = userInput
+            if packageMode == 'sp':
+                userInput = input("Please enter a valid Package ID (example '1' or '10'):\n")
+                if packageHashMap.verifyNode(int(userInput)):
+                    package = packageHashMap.getNodeObject(int(userInput))
+                else:
+                    print("ERROR: Package ID does not exist exiting application now")
+                    exit()
+            userInput = input("To check package status at a specific time please enter 'time' or to check current status enter 'cs':\n")
+            if userInput == 'time':
+                time = timeConversion()
+                if packageMode == 'sp':
+                    pass
+                if packageMode == 'all':
+                    pass
+            elif userInput == 'cs' and packageMode == 'sp':
+                print(package)
+            elif userInput == 'cs' and packageMode == 'all':
+                packageHashMap.print()
+            else:
+                print("ERROR: invalid input exiting applicaiton now")
+                exit()
+        elif userInput == 'exit':
             print("Exiting the application now")
-            x +=1
-        elif packageHashMap.verifyNode(int(searchPackage)):
-            print("The Package does exist.")
-        elif packageHashMap.verifyNode(int(searchPackage)) == False:
-            print("The Package does not exist.") 
+            exit()
         else:
-            print("Invalid input please try again.")
-        print("========================================================================================================\n")
+            print("ERROR: Invalid input exiting application")
+            exit()
+    except ValueError:
+        print("ERROR: Invalid Input exiting application")
+        exit()
+            
 
 if __name__ == "__main__":
     main()

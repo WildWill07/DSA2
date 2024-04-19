@@ -72,7 +72,7 @@ class DLL:
     def Print(self):
         currentNode = self.head
         while currentNode != None:
-            print(currentNode.data)
+            print(currentNode)
             currentNode = currentNode.next
         if self.head == None and self.tail == None:
             print("The DLL is empty.")
