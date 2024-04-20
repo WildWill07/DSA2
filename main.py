@@ -82,8 +82,8 @@ def main():
     print("========================================================================================================\n")
     print("Welcome to Package Router.")
     print("This program was written and developed by William Neyland\n")
+    print("The total distance traveled by all delivery trucks is: " + str(truck1.mileage + truck2.mileage + truck3.mileage) + " miles")
     print("To check the status of specific package please enter 'sp' or to check the status of all packages enter 'all'.")
-    print("If you wish to exit the application please type in 'exit'.")
     try:
         userInput = input()
         if userInput == 'sp' or 'all':
@@ -113,9 +113,6 @@ def main():
             else:
                 print("ERROR: invalid input exiting applicaiton now")
                 exit()
-        elif userInput == 'exit':
-            print("Exiting the application now")
-            exit()
         else:
             print("ERROR: Invalid input exiting application")
             exit()
