@@ -3,6 +3,9 @@ from truck import Truck
 import csv
 import datetime
 
+# Student ID: 011476838
+# Name: William Neyland
+
 # imports necessary csv data and saves data in a list 2D list object
 with open("CSV/PackageData.csv") as file:
     csvPackage = csv.reader(file)
@@ -86,7 +89,7 @@ def main():
     print("To check the status of specific package please enter 'sp' or to check the status of all packages enter 'all'.")
     try:
         userInput = input()
-        if userInput == 'sp' or 'all':
+        if userInput == 'sp' or userInput == 'all':
             packageMode = userInput
             if packageMode == 'sp':
                 userInput = input("Please enter a valid Package ID (example '1' or '10'):\n")
