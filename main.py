@@ -25,6 +25,11 @@ def timeConversion():
     try:
         (h, m, s) = inputTime.split(":")
         convertedTime = datetime.timedelta(hours=int(h), minutes=int(m), seconds=int(s))
+        # Manually Update package address for package 9 @ 10:20:00
+        if convertedTime < datetime.timedelta(hours=10, minutes=20, seconds=0):
+            package = packageHashMap.getNodeObject(9)
+            package.D_Address = "300 State St"
+            package.D_ZipCode = "84103"
         return convertedTime
     except ValueError:
         print("ERROR: Provided invalid input exiting the application now")
