@@ -16,7 +16,7 @@ class PackageNode:
         self.truckID = None
 
     def __str__(self):
-        return "Package ID: %s | Package Address: %s, %s, UT, %s | Package Weight: %skg | Delivery Deadline: %s | Package Status: %s | Truck ID: %s | Time of Delivery: %s" % (self.PackageID, self.D_Address, self.D_City, self.D_ZipCode, self.Weight, self.D_Deadline, self.D_Status, self.truckID, self.deliveryTime)
+        return "ID: %s | Weight: %skg | Deadline: %s | Status: %s | Truck ID: %s | Scheduled Departure Time: %s | Scheduled Delivery: %s | Address: %s, %s, UT, %s" % (self.PackageID, self.Weight, self.D_Deadline, self.D_Status, self.truckID, self.departTime, self.deliveryTime, self.D_Address, self.D_City, self.D_ZipCode)
     
     def verifyStatus(self, time):
         if time > self.deliveryTime:

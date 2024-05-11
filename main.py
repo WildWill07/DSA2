@@ -55,6 +55,7 @@ def deliver(truckX):
     temp = truckX.packageLoad.copy()
     for id in truckX.packageLoad:
         (packageHashMap.getNodeObject(id)).departTime = truckX.time
+        (packageHashMap.getNodeObject(id)).truckID = truckX.ID
     truckX.packageLoad.clear()
 
     while(len(temp) > 0):
